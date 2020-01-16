@@ -5,11 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Vikekh.Cabinet.Web.Models
 {
     [Table("MovieVersion")]
-    public class MovieVersion
+    public class MovieVersion : EntityBase
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
-
         public Movie Movie { get; set; }
 
         public List<MovieDefinition> MovieDefinitions { get; set; }
