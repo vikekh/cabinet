@@ -1,14 +1,16 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Vikekh.Cabinet.Web.Models
 {
-    public class MovieItem
+    [Table("MovieFormat")]
+    public class MovieFormat
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        public MovieVersion MovieVersion { get; set; }
+        public List<MovieDefinition> MovieDefinitions { get; set; }
 
         public string Name { get; set; }
     }

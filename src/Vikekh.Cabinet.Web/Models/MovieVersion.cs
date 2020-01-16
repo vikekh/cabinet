@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Vikekh.Cabinet.Web.Models
 {
+    [Table("MovieVersion")]
     public class MovieVersion
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -11,7 +12,7 @@ namespace Vikekh.Cabinet.Web.Models
 
         public Movie Movie { get; set; }
 
-        public List<MovieItem> MovieItems { get; set; }
+        public List<MovieDefinition> MovieDefinitions { get; set; }
 
         public string Name { get; set; }
     }

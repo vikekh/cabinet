@@ -19,87 +19,100 @@ namespace Vikekh.Cabinet.Web.Data
                 new Movie { Title = "The Good, the Bad and the Ugly", Year = 1966 }
             };
 
+            var movieVersions = new List<MovieVersion>();
+
+            foreach (var movie in movies)
+            {
+                movieVersions.Add(new MovieVersion { Movie = movie });
+            }
+
+            movieVersions.Add(new MovieVersion
+            {
+                Movie = movies.GetMovie("The Good, the Bad and the Ugly", 1966),
+                Name = "2004 re-release"
+            });
+
+            var dvdMovieFormat = new MovieFormat { Name = "DVD" };
+            var blurayMovieFormat = new MovieFormat { Name = "Blu-ray" };
+
+            var movieContainers = new List<MovieContainer>
+            {
+                new MovieContainer {
+                    Name = "The Good, the Bad and the Ugly",
+                    MovieDefinitions = new List<MovieDefinition>
+                    {
+                        new MovieDefinition {
+                            MovieVersion = movieVersions.GetMovieVersion("The Good, the Bad and the Ugly", 1966),
+                            MovieFormat = dvdMovieFormat
+                        }
+                    }
+                },
+                new MovieContainer
+                {
+                    Name = "The Good, The Bad and The Ugly - 2 Disc Special Edition",
+                    MovieDefinitions = new List<MovieDefinition>
+                    {
+                        new MovieDefinition {
+                            MovieVersion = movieVersions.GetMovieVersion("The Good, the Bad and the Ugly", 1966, "2004 re-release"),
+                            MovieFormat = dvdMovieFormat
+                        }
+                    }
+                },
+                new MovieContainer
+                {
+                    Name = "The Man With No Name Trilogy",
+                    MovieDefinitions = new List<MovieDefinition>
+                    {
+                        new MovieDefinition {
+                            MovieVersion = movieVersions.GetMovieVersion("A Fistful of Dollars", 1964),
+                            MovieFormat = blurayMovieFormat
+                        },
+                        new MovieDefinition {
+                            MovieVersion = movieVersions.GetMovieVersion("For a Few Dollars More", 1965),
+                            MovieFormat = blurayMovieFormat
+                        },
+                        new MovieDefinition {
+                            MovieVersion = movieVersions.GetMovieVersion("The Good, the Bad and the Ugly", 1966, "2004 re-release"),
+                            MovieFormat = blurayMovieFormat
+                        }
+                    }
+                }
+            };
+
             foreach (var movie in movies)
             {
                 context.Movies.Add(movie);
-                context.MovieVersions.Add(new MovieVersion { Movie = movie });
+            }
+
+            foreach (var version in movieVersions)
+            {
+                context.MovieVersions.Add(version);
+            }
+
+            context.MovieFormats.Add(dvdMovieFormat);
+            context.MovieFormats.Add(blurayMovieFormat);
+
+            foreach (var container in movieContainers)
+            {
+                context.MovieContainers.Add(container);
             }
 
             context.SaveChanges();
-
-            // Movie versions
-            context.MovieVersions.Add(new MovieVersion
-            {
-                Movie = context.GetMovie("The Good, the Bad and the Ugly", 1966),
-                Name = "2004 re-release"
-            });
-            context.SaveChanges();
-
-            // Movie items
-            context.MovieItems.Add(new MovieItem
-            {
-                MovieVersion = context.GetMovieVersion("A Fistful of Dollars", 1964),
-                Name = "Blu-ray"
-            });
-            context.MovieItems.Add(new MovieItem
-            {
-                MovieVersion = context.GetMovieVersion("For a Few Dollars More", 1965),
-                Name = "Blu-ray"
-            });
-            context.MovieItems.Add(new MovieItem
-            {
-                MovieVersion = context.GetMovieVersion("The Good, the Bad and the Ugly", 1966),
-                Name = "DVD"
-            });
-            context.MovieItems.Add(new MovieItem
-            {
-                MovieVersion = context.GetMovieVersion("The Good, the Bad and the Ugly", 1966, "2004 re-release"),
-                Name = "DVD"
-            });
-            context.MovieItems.Add(new MovieItem
-            {
-                MovieVersion = context.GetMovieVersion("The Good, the Bad and the Ugly", 1966, "2004 re-release"),
-                Name = "Blu-ray"
-            });
-            context.SaveChanges();
-
-            // Movie containers
-            context.MovieContainers.Add(new MovieContainer {
-                Name = "The Good, the Bad and the Ugly",
-                MovieItems = new List<MovieItem> { context.GetMovieItem("The Good, the Bad and the Ugly", 1966, "DVD") }
-            });
-            context.MovieContainers.Add(new MovieContainer
-            {
-                Name = "The Good, The Bad and The Ugly - 2 Disc Special Edition",
-                MovieItems = new List<MovieItem> { context.GetMovieItem("The Good, the Bad and the Ugly", 1966, "DVD", "2004 re-release") }
-            });
-            context.MovieContainers.Add(new MovieContainer
-            {
-                Name = "The Man With No Name Trilogy",
-                MovieItems = new List<MovieItem> {
-                    context.GetMovieItem("A Fistful of Dollars", 1964, "Blu-ray"),
-                    context.GetMovieItem("For a Few Dollars More", 1965, "Blu-ray"),
-                    context.GetMovieItem("The Good, the Bad and the Ugly", 1966, "Blu-ray", "2004 re-release")
-                }
-            });
-            context.SaveChanges();
         }
 
-        private static Movie GetMovie(this DbContext context, string title, int year)
+        private static Movie GetMovie(this IEnumerable<Movie> movies, string title, int year)
         {
-            return context.Movies.Single(movie => movie.Title == title && movie.Year == year);
+            return movies.Single(movie => movie.Title == title && movie.Year == year);
         }
 
-        private static MovieVersion GetMovieVersion(this DbContext context, string movieTitle, int movieYear, string name = null)
+        private static MovieContainer GetMovieContainer(this IEnumerable<MovieContainer> containers, string name)
         {
-            var movie = context.GetMovie(movieTitle, movieYear);
-            return context.MovieVersions.Single(version => version.Movie == movie && version.Name == name);
+            return containers.Single(container => container.Name == name);
         }
 
-        private static MovieItem GetMovieItem(this DbContext context, string movieTitle, int movieYear, string name, string versionName = null)
+        private static MovieVersion GetMovieVersion(this IEnumerable<MovieVersion> versions, string movieTitle, int movieYear, string name = null)
         {
-            var version = context.GetMovieVersion(movieTitle, movieYear, versionName);
-            return context.MovieItems.Single(item => item.MovieVersion == version && item.Name == name);
+            return versions.Single(version => version.Movie.Title == movieTitle && version.Movie.Year == movieYear && version.Name == name);
         }
     }
 }

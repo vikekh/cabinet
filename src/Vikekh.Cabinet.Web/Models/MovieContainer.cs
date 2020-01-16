@@ -4,12 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Vikekh.Cabinet.Web.Models
 {
+    [Table("MovieContainer")]
     public class MovieContainer
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        public List<MovieItem> MovieItems { get; set; }
+        public List<MovieDefinition> MovieDefinitions { get; set; }
 
         public string Name { get; set; }
     }

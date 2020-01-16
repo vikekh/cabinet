@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Vikekh.Cabinet.Web.Models
 {
+    [Table("Movie")]
     public class Movie
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
