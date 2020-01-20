@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 
 namespace Vikekh.Cabinet.Web.Interfaces
 {
-    public interface IRepository<T> where T : class, IEntity
+    public interface IRepository<TEntity> where TEntity : class
     {
-        T Create(T entity);
+        void Create(TEntity entity);
 
-        T Delete(int id);
+        //void Delete(TEntity id);
 
-        T Get(Guid id);
+        //TEntity Get(Guid id);
 
-        IEnumerable<T> GetAll();
-        
-        T Update(T entity);
+        //IQueryable<TEntity> GetAll();
+
+        //void Update(TEntity entity);
     }
 }
