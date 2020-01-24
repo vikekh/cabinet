@@ -26,8 +26,8 @@ namespace Vikekh.Cabinet.Web
 
                 try
                 {
-                    var context = services.GetRequiredService<DbContext>();
-                    DbInitializer.Initialize(context);
+                    var context = services.GetRequiredService<ApplicationDbContext>();
+                    ApplicationDbContextSeed.Initialize(context);
                 }
                 catch (Exception ex)
                 {
