@@ -1,10 +1,7 @@
-using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Vikekh.Cabinet.Web.Models
+namespace Vikekh.Cabinet.Core.Models
 {
-    [Table("MovieFormat")]
     public class MovieFormat : EntityBase
     {
         public List<MovieDefinition> MovieDefinitions { get; set; }

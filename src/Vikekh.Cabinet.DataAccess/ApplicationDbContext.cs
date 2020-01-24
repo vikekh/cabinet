@@ -1,11 +1,12 @@
 using Microsoft.EntityFrameworkCore;
-using Vikekh.Cabinet.Web.Models;
+using Vikekh.Cabinet.Core.Interfaces;
+using Vikekh.Cabinet.Core.Models;
 
-namespace Vikekh.Cabinet.Web.Data
+namespace Vikekh.Cabinet.DataAccess
 {
-    public class DbContext : Microsoft.EntityFrameworkCore.DbContext
+    public class ApplicationDbContext : DbContext
     {
-        public DbContext(DbContextOptions<DbContext> options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
@@ -22,6 +23,10 @@ namespace Vikekh.Cabinet.Web.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<IEntity>()
+                .Property(property => property.Id)
+                .ValueGeneratedOnAdd();
+
             modelBuilder.Entity<MovieDefinition>()
                 .HasKey(definition => new { definition.MovieContainerId, definition.MovieVersionId, definition.MovieFormatId });
 
@@ -34,11 +39,6 @@ namespace Vikekh.Cabinet.Web.Data
                 .HasOne(definition => definition.MovieVersion)
                 .WithMany(version => version.MovieDefinitions)
                 .HasForeignKey(definition => definition.MovieVersionId);
-
-            modelBuilder.Entity<MovieDefinition>()
-                .HasOne(definition => definition.MovieFormat)
-                .WithMany(format => format.MovieDefinitions)
-                .HasForeignKey(definition => definition.MovieFormatId);
         }
     }
 }

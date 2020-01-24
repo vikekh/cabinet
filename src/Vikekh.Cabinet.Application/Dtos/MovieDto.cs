@@ -1,6 +1,6 @@
 using System;
 
-namespace Vikekh.Cabinet.Web.Services
+namespace Vikekh.Cabinet.Application.Dtos
 {
     public class MovieDto
     {

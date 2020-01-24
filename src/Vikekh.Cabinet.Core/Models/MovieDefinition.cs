@@ -1,9 +1,7 @@
 using System;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Vikekh.Cabinet.Web.Models
+namespace Vikekh.Cabinet.Core.Models
 {
-    [Table("MovieDefinition")]
     public class MovieDefinition : EntityBase
     {
         public MovieContainer MovieContainer { get; set; }

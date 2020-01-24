@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
-using Vikekh.Cabinet.Web.Models;
+using Vikekh.Cabinet.Core.Models;
 
-namespace Vikekh.Cabinet.Web.Data
+namespace Vikekh.Cabinet.DataAccess
 {
-    public static class DbInitializer
+    public static class ApplicationDbContextSeed
     {
-        public static void Initialize(DbContext context)
+        public static void Initialize(ApplicationDbContext context)
         {
             context.Database.EnsureCreated();
 

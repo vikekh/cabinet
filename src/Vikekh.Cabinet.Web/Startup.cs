@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ApplicationDbContext = Vikekh.Cabinet.DataAccess.ApplicationDbContext;
 
 namespace Vikekh.Cabinet.Web
 {
@@ -20,7 +21,7 @@ namespace Vikekh.Cabinet.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<Data.DbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DbContext")));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DbContext")));
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
