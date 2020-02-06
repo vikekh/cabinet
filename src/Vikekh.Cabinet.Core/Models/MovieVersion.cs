@@ -4,10 +4,19 @@ namespace Vikekh.Cabinet.Core.Models
 {
     public class MovieVersion : EntityBase
     {
-        public Movie Movie { get; set; }
+        private readonly List<MovieDefinition> _movieDefinitions;
 
-        public List<MovieDefinition> MovieDefinitions { get; set; }
+        private MovieVersion() {}
 
-        public string Name { get; set; }
+        public MovieVersion(string name)
+        {
+            Name = name;
+        }
+
+        public Movie Movie { get; private set; }
+
+        public IReadOnlyCollection<MovieDefinition> MovieDefinitions => _movieDefinitions.AsReadOnly();
+
+        public string Name { get; private set; }
     }
 }

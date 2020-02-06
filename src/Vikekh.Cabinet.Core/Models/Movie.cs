@@ -1,13 +1,42 @@
+using System;
 using System.Collections.Generic;
 
 namespace Vikekh.Cabinet.Core.Models
 {
     public class Movie : EntityBase
     {
-        public List<MovieVersion> MovieVersions { get; set; }
+        private readonly List<MovieVersion> _movieVersions;
 
-        public string Title { get; set; }
+        private Movie()
+        {
+            _movieVersions = new List<MovieVersion>
+            {
+                new MovieVersion(null)
+            };
+        }
 
-        public int Year { get; set; }
+        public Movie(string title, int year)
+        {
+            Title = title;
+            Year = year;
+
+            _movieVersions = new List<MovieVersion>
+            {
+                new MovieVersion(null)
+            };
+        }
+
+        public IReadOnlyCollection<MovieVersion> MovieVersions => _movieVersions.AsReadOnly();
+
+        public string Title { get; private set; }
+
+        public int Year { get; private set; }
+
+        public void AddMovieVersion(string name)
+        {
+            if (string.IsNullOrEmpty(name)) throw new ArgumentException();
+
+            _movieVersions.Add(new MovieVersion(name));
+        }
     }
 }

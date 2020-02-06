@@ -14,8 +14,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SQLite" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Vikekh.Cabinet.Application\Vikekh.Cabinet.Application.csproj" />
+    <ProjectReference Include="..\Vikekh.Cabinet.Infrastructure\Vikekh.Cabinet.Infrastructure.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

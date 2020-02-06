@@ -4,8 +4,13 @@ namespace Vikekh.Cabinet.Core.Models
 {
     public class MovieFormat : EntityBase
     {
-        public List<MovieDefinition> MovieDefinitions { get; set; }
+        private MovieFormat() {}
 
-        public string Name { get; set; }
+        public MovieFormat(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; private set; }
     }
 }

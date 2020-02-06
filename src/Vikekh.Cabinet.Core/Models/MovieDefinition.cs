@@ -4,16 +4,19 @@ namespace Vikekh.Cabinet.Core.Models
 {
     public class MovieDefinition : EntityBase
     {
-        public MovieContainer MovieContainer { get; set; }
+        public MovieDefinition() {}
 
-        public Guid MovieContainerId { get; set; }
+        public MovieDefinition(MovieContainer movieContainer, MovieVersion movieVersion, MovieFormat movieFormat)
+        {
+            MovieContainer = movieContainer;
+            MovieVersion = movieVersion;
+            MovieFormat = movieFormat;
+        }
 
-        public MovieFormat MovieFormat { get; set; }
+        public MovieContainer MovieContainer { get; private set; }
 
-        public Guid MovieFormatId { get; set; }
+        public MovieFormat MovieFormat { get; private set; }
 
-        public MovieVersion MovieVersion { get; set; }
-
-        public Guid MovieVersionId { get; set; }
+        public MovieVersion MovieVersion { get; private set; }
     }
 }
