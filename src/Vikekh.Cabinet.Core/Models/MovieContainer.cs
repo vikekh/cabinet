@@ -1,9 +1,9 @@
-using System;
 using System.Collections.Generic;
+using Vikekh.Cabinet.Core.Interfaces;
 
 namespace Vikekh.Cabinet.Core.Models
 {
-    public class MovieContainer : EntityBase
+    public class MovieContainer : EntityBase, IAggregateRoot
     {
         private readonly List<MovieDefinition> _movieDefinitions;
 
@@ -25,7 +25,7 @@ namespace Vikekh.Cabinet.Core.Models
 
         public void AddMovieDefinition(MovieVersion movieVersion, MovieFormat movieFormat)
         {
-            _movieDefinitions.Add(new MovieDefinition(this, movieVersion, movieFormat));
+            _movieDefinitions.Add(new MovieDefinition(movieVersion, movieFormat));
         }
     }
 }

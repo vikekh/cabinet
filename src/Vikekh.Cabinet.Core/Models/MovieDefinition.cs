@@ -6,9 +6,8 @@ namespace Vikekh.Cabinet.Core.Models
     {
         public MovieDefinition() {}
 
-        public MovieDefinition(MovieContainer movieContainer, MovieVersion movieVersion, MovieFormat movieFormat)
+        public MovieDefinition(MovieVersion movieVersion, MovieFormat movieFormat)
         {
-            MovieContainer = movieContainer;
             MovieVersion = movieVersion;
             MovieFormat = movieFormat;
         }

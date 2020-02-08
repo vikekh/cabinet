@@ -10,7 +10,19 @@ namespace Vikekh.Cabinet.Infrastructure.Persistence
         {
             context.Database.EnsureCreated();
 
-            //if (context.Movies.Any()) return;
+            if (context.Movies.Any()) return;
+
+            var movie = new Movie("The Good, the Bad and the Ugly", 1966);
+            var blurayMovieFormat = new MovieFormat("Blu-ray");
+            var movieContainer = new MovieContainer("The Good, the Bad and the Ugly");
+            movieContainer.AddMovieDefinition(movie.MovieVersions.First(), blurayMovieFormat);
+            context.Movies.Add(movie);
+            context.MovieFormats.Add(blurayMovieFormat);
+            context.MovieContainers.Add(movieContainer);
+            context.SaveChanges();
+
+            var movieDefinitions = context.MovieDefinitions.AsEnumerable();
+            var movieDefinition = movieDefinitions.First();
 
             //var movies = new List<Movie>
             //{

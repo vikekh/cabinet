@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Vikekh.Cabinet.Core.Interfaces;
 
 namespace Vikekh.Cabinet.Core.Models
 {
-    public class Movie : EntityBase
+    public class Movie : EntityBase, IAggregateRoot
     {
         private readonly List<MovieVersion> _movieVersions;
 
