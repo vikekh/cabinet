@@ -1,7 +1,7 @@
 using Vikekh.Cabinet.Application.Dtos;
 using Vikekh.Cabinet.Application.Interfaces;
 using Vikekh.Cabinet.Core.Interfaces;
-using Vikekh.Cabinet.Core.Models;
+using Vikekh.Cabinet.Core.Entities;
 
 namespace Vikekh.Cabinet.Application.Services
 {
@@ -18,9 +18,9 @@ namespace Vikekh.Cabinet.Application.Services
 
         public void AddMovie(MovieDto movieDto)
         {
-            var movie = movieDto.Map<Movie>() as Movie;
-            _movieRepository.AddMovie(movie);
-            _unitOfWork.Commit();
+            //var movie = movieDto.Map<Movie>() as Movie;
+            //_movieRepository.AddMovie(movie);
+            //_unitOfWork.Commit();
         }
     }
 }

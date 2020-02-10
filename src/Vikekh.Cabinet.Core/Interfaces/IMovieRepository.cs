@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using Vikekh.Cabinet.Core.Models;
+using Vikekh.Cabinet.Core.Entities;
 
 namespace Vikekh.Cabinet.Core.Interfaces
 {

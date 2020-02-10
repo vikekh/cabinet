@@ -1,22 +1,19 @@
 using System.Collections.Generic;
+using Vikekh.Cabinet.Core.Common;
+using Vikekh.Cabinet.Core.Enums;
 using Vikekh.Cabinet.Core.Interfaces;
 
-namespace Vikekh.Cabinet.Core.Models
+namespace Vikekh.Cabinet.Core.Entities
 {
     public class MovieContainer : EntityBase, IAggregateRoot
     {
-        private readonly List<MovieDefinition> _movieDefinitions;
+        private readonly List<MovieDefinition> _movieDefinitions = new List<MovieDefinition>();
 
-        private MovieContainer()
-        {
-            _movieDefinitions = new List<MovieDefinition>();
-        }
+        private MovieContainer() {}
 
         public MovieContainer(string name)
         {
             Name = name;
-
-            _movieDefinitions = new List<MovieDefinition>();
         }
 
         public IReadOnlyCollection<MovieDefinition> MovieDefinitions => _movieDefinitions.AsReadOnly();

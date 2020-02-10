@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Vikekh.Cabinet.Core.Models;
+using Vikekh.Cabinet.Core.Entities;
 
 namespace Vikekh.Cabinet.Infrastructure.Persistence.Configurations
 {
@@ -9,6 +9,9 @@ namespace Vikekh.Cabinet.Infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Movie> builder)
         {
             builder.Property(property => property.Id).ValueGeneratedOnAdd();
+
+            builder.HasMany(m => m.MovieVersions)
+                .WithOne();
         }
     }
 }

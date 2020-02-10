@@ -1,7 +1,6 @@
 using System;
-using System.Collections.Generic;
+using Vikekh.Cabinet.Core.Entities;
 using Vikekh.Cabinet.Core.Interfaces;
-using Vikekh.Cabinet.Core.Models;
 
 namespace Vikekh.Cabinet.Infrastructure.Persistence
 {

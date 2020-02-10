@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using Vikekh.Cabinet.Core.Models;
+using Vikekh.Cabinet.Core.Entities;
 
 namespace Vikekh.Cabinet.Infrastructure.Persistence
 {
@@ -16,8 +16,6 @@ namespace Vikekh.Cabinet.Infrastructure.Persistence
         public DbSet<MovieContainer> MovieContainers { get; set; }
 
         public DbSet<MovieDefinition> MovieDefinitions { get; set; }
-
-        public DbSet<MovieFormat> MovieFormats { get; set; }
 
         public DbSet<MovieVersion> MovieVersions { get; set; }
 

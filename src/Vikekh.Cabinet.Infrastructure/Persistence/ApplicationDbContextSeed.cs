@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Vikekh.Cabinet.Core.Models;
+using Vikekh.Cabinet.Core.Entities;
+using Vikekh.Cabinet.Core.Enums;
 
 namespace Vikekh.Cabinet.Infrastructure.Persistence
 {
@@ -12,17 +13,19 @@ namespace Vikekh.Cabinet.Infrastructure.Persistence
 
             if (context.Movies.Any()) return;
 
-            var movie = new Movie("The Good, the Bad and the Ugly", 1966);
-            var blurayMovieFormat = new MovieFormat("Blu-ray");
-            var movieContainer = new MovieContainer("The Good, the Bad and the Ugly");
-            movieContainer.AddMovieDefinition(movie.MovieVersions.First(), blurayMovieFormat);
-            context.Movies.Add(movie);
-            context.MovieFormats.Add(blurayMovieFormat);
-            context.MovieContainers.Add(movieContainer);
-            context.SaveChanges();
+            var movieRepository = new MovieRepository(context);
+            //var movieContainerRepository = new MovieContainerRepository(context);
 
-            var movieDefinitions = context.MovieDefinitions.AsEnumerable();
-            var movieDefinition = movieDefinitions.First();
+            //var movie = new Movie("The Good, the Bad and the Ugly", 1966);
+            //var movieContainer = new MovieContainer("The Good, the Bad and the Ugly");
+            //movieContainer.AddMovieDefinition(movie.MovieVersions.First(), blurayMovieFormat);
+            //context.Movies.Add(movie);
+            //context.MovieFormats.Add(blurayMovieFormat);
+            //context.MovieContainers.Add(movieContainer);
+            //context.SaveChanges();
+
+            //var movieDefinitions = context.MovieDefinitions.AsEnumerable();
+            //var movieDefinition = movieDefinitions.First();
 
             //var movies = new List<Movie>
             //{
@@ -112,19 +115,19 @@ namespace Vikekh.Cabinet.Infrastructure.Persistence
             //context.SaveChanges();
         }
 
-        private static Movie GetMovie(this IEnumerable<Movie> movies, string title, int year)
-        {
-            return movies.Single(movie => movie.Title == title && movie.Year == year);
-        }
+        //private static Movie GetMovie(this IEnumerable<Movie> movies, string title, int year)
+        //{
+        //    return movies.Single(movie => movie.Name == title && movie.YearReleased == year);
+        //}
 
-        private static MovieContainer GetMovieContainer(this IEnumerable<MovieContainer> containers, string name)
-        {
-            return containers.Single(container => container.Name == name);
-        }
+        //private static MovieContainer GetMovieContainer(this IEnumerable<MovieContainer> containers, string name)
+        //{
+        //    return containers.Single(container => container.Name == name);
+        //}
 
-        private static MovieVersion GetMovieVersion(this IEnumerable<MovieVersion> versions, string movieTitle, int movieYear, string name = null)
-        {
-            return versions.Single(version => version.Movie.Title == movieTitle && version.Movie.Year == movieYear && version.Name == name);
-        }
+        //private static MovieVersion GetMovieVersion(this IEnumerable<MovieVersion> versions, string movieTitle, int movieYear, string name = null)
+        //{
+        //    return versions.Single(version => version.Movie.Name == movieTitle && version.Movie.YearReleased == movieYear && version.Name == name);
+        //}
     }
 }
