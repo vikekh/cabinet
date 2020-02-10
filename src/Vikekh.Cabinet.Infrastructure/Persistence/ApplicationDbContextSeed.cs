@@ -16,7 +16,9 @@ namespace Vikekh.Cabinet.Infrastructure.Persistence
             var movieRepository = new MovieRepository(context);
             //var movieContainerRepository = new MovieContainerRepository(context);
 
-            //var movie = new Movie("The Good, the Bad and the Ugly", 1966);
+            var movie = new Movie("The Good, the Bad and the Ugly", 1966);
+            movieRepository.AddMovie(movie);
+
             //var movieContainer = new MovieContainer("The Good, the Bad and the Ugly");
             //movieContainer.AddMovieDefinition(movie.MovieVersions.First(), blurayMovieFormat);
             //context.Movies.Add(movie);

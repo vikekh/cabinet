@@ -26,11 +26,11 @@ namespace Vikekh.Cabinet.Core.Entities
 
         public int YearReleased { get; private set; }
 
-        public void AddMovieVersion(string name)
+        public void AddMovieVersion(MovieVersion movieVersion)
         {
-            if (_movieVersions.Exists(m => m.Name == name)) throw new ArgumentException("Duplicate", nameof(name));
+            if (_movieVersions.Exists(m => m.Name == movieVersion.Name)) throw new Exception("Duplicate");
 
-            _movieVersions.Add(new MovieVersion(name));
+            _movieVersions.Add(movieVersion);
         }
 
         public MovieVersion GetMovieVersion(Guid id)

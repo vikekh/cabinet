@@ -20,9 +20,9 @@ namespace Vikekh.Cabinet.Core.Entities
 
         public string Name { get; private set; }
 
-        public void AddMovieDefinition(MovieVersion movieVersion, MovieFormat movieFormat)
+        public void AddMovieDefinition(MovieDefinition movieDefinition)
         {
-            _movieDefinitions.Add(new MovieDefinition(movieVersion, movieFormat));
+            _movieDefinitions.Add(movieDefinition);
         }
     }
 }
