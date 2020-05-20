@@ -5,9 +5,9 @@ namespace Vikekh.Cabinet.Core.Entities
 {
     public class MovieDefinition : EntityBase
     {
-        private MovieDefinition() {}
+        private MovieDefinition() : base() {}
 
-        public MovieDefinition(MovieVersion movieVersion, MovieFormat movieFormat)
+        public MovieDefinition(MovieVersion movieVersion, MovieFormat movieFormat) : this()
         {
             MovieVersion = movieVersion;
             MovieFormat = movieFormat;

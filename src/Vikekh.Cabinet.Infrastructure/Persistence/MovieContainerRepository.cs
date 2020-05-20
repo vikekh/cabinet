@@ -9,7 +9,7 @@ namespace Vikekh.Cabinet.Infrastructure.Persistence
     {
         public MovieContainerRepository(ApplicationDbContext context) : base(context) {}
 
-        public void AddMovie(MovieContainer movieContainer)
+        public void AddMovieContainer(MovieContainer movieContainer)
         {
             Set.Add(movieContainer);
         }

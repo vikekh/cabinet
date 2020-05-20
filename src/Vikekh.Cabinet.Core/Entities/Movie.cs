@@ -9,7 +9,7 @@ namespace Vikekh.Cabinet.Core.Entities
     {
         private readonly List<MovieVersion> _movieVersions = new List<MovieVersion>();
 
-        private Movie()
+        private Movie() : base()
         {
             AddMovieVersion(null);
         }

@@ -10,7 +10,8 @@ namespace Vikekh.Cabinet.Infrastructure.Persistence
 
         public void AddMovie(Movie movie)
         {
-            Set.Add(movie);
+            _context.Set<Movie>().Add(movie);
+            //Set.Add(movie);
         }
 
         public Movie GetMovie(Guid movieId)

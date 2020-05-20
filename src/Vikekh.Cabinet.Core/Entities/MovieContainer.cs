@@ -9,9 +9,9 @@ namespace Vikekh.Cabinet.Core.Entities
     {
         private readonly List<MovieDefinition> _movieDefinitions = new List<MovieDefinition>();
 
-        private MovieContainer() {}
+        private MovieContainer() : base() {}
 
-        public MovieContainer(string name)
+        public MovieContainer(string name) : this()
         {
             Name = name;
         }

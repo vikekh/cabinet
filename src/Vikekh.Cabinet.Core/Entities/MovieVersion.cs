@@ -4,9 +4,9 @@ namespace Vikekh.Cabinet.Core.Entities
 {
     public class MovieVersion : EntityBase
     {
-        private MovieVersion() {}
+        private MovieVersion() : base() { }
 
-        public MovieVersion(string name)
+        public MovieVersion(string name) : this()
         {
             Name = name;
         }

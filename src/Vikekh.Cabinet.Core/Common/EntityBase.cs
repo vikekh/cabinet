@@ -5,6 +5,11 @@ namespace Vikekh.Cabinet.Core.Common
 {
     public abstract class EntityBase : IEntity
     {
-        public Guid Id { get; private set; }
+        public EntityBase()
+        {
+            //Id = Guid.NewGuid();
+        }
+
+        public Guid Id { get; set; }
     }
 }

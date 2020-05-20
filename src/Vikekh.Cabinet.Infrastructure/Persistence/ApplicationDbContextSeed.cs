@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using Vikekh.Cabinet.Core.Entities;
 using Vikekh.Cabinet.Core.Enums;
@@ -14,12 +13,17 @@ namespace Vikekh.Cabinet.Infrastructure.Persistence
             if (context.Movies.Any()) return;
 
             var movieRepository = new MovieRepository(context);
-            //var movieContainerRepository = new MovieContainerRepository(context);
+            var movieContainerRepository = new MovieContainerRepository(context);
 
             var movie = new Movie("The Good, the Bad and the Ugly", 1966);
             movieRepository.AddMovie(movie);
 
-            //var movieContainer = new MovieContainer("The Good, the Bad and the Ugly");
+            var movieContainer = new MovieContainer("The Good, the Bad and the Ugly");
+            movieContainer.AddMovieDefinition(new MovieDefinition(movie.GetMovieVersion(), MovieFormat.Bluray));
+            movieContainerRepository.AddMovieContainer(movieContainer);
+
+            context.SaveChanges();
+
             //movieContainer.AddMovieDefinition(movie.MovieVersions.First(), blurayMovieFormat);
             //context.Movies.Add(movie);
             //context.MovieFormats.Add(blurayMovieFormat);

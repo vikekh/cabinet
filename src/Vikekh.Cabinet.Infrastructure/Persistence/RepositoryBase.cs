@@ -6,7 +6,7 @@ namespace Vikekh.Cabinet.Infrastructure.Persistence
 {
     public abstract class RepositoryBase<T> where T : class, IAggregateRoot
     {
-        private readonly ApplicationDbContext _context;
+        protected readonly ApplicationDbContext _context;
 
         public RepositoryBase(ApplicationDbContext context)
         {

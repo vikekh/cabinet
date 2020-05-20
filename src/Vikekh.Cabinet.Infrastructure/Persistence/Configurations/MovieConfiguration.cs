@@ -8,7 +8,9 @@ namespace Vikekh.Cabinet.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Movie> builder)
         {
-            builder.Property(property => property.Id).ValueGeneratedOnAdd();
+            builder.HasKey(m => m.Id);
+
+            builder.Property(m => m.Id).ValueGeneratedOnAdd();
 
             builder.HasMany(m => m.MovieVersions)
                 .WithOne();
